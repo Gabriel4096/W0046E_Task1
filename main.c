@@ -10,6 +10,7 @@
 
 int main(void) {
     struct timespec t1, t2;
+    const int HalfRandMax = (RAND_MAX >> 1) + 1;
 
     printf("Running part %d\n", PART);
 
@@ -38,7 +39,7 @@ int main(void) {
         Sum4 += A[i] - B[i];
     #endif
     #if PART == 4
-        if (A[i] < 500000) {
+        if (A[i] < HalfRandMax) {
             continue;
         }
     #endif
