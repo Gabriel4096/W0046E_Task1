@@ -9,8 +9,8 @@
 #define ARRAY_SIZE (1000000)
 
 int main(void) {
-    struct timespec t1, t2;
     const int HalfRandMax = (RAND_MAX >> 1) + 1;
+    struct timespec t1, t2;
 
     printf("Running part %d\n", PART);
 
@@ -43,8 +43,11 @@ int main(void) {
             continue;
         }
     #endif
-    #if PART >= 3
+    #if PART == 3 || PART == 4
         Sum += (A[i] + B[i]) * (A[i] - B[i]);
+    #endif
+    #if PART == 5
+        Sum += (A[i] >= HalfRandMax) * (A[i] + B[i]) * (A[i] - B[i]);
     #endif
     }
     clock_gettime(CLOCK_MONOTONIC, &t2);  // Measure end
