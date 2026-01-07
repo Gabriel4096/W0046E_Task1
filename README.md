@@ -2,7 +2,7 @@
 ## Profiling and CPU architecture, Task 1
 ### Gabriel Kopparmark, gabkop-2@student.ltu.se
 ### Gabriel4096, https://github.com/Gabriel4096/W0046E_Task1
-### 2026-01-0X
+### 2026-01-07
 
 # Table of contents
 1. [Problem specification](#1-problem-specification)
@@ -232,3 +232,6 @@ These are the machine instructions for the critical loop from the five programs 
 ~~~
 
 # 5. Discussion
+It is interesting that going from part one to two, with 4x operations only takes 2.3x the time. I think this is due to ILP (instruction-level parallelism) where the CPU can do several instructions at the same time. This works because the four sums are independent. The CPU does not need to wait for the results from the other three sums before calculating the next term.\
+Going to part three, doing all operations (except bitshift) together in one sum increases the throughput, almost halving the time. Checking the ASM output in the previous chapter, there are a lot less instructions for the 3rd part than the 2nd part.\
+Adding the if statement in part four makes it considerably slower, 2.8x the time compared to part three. The ASM contains more conditional jumps and, since the numbers are random, leads to many branch mispredictions. The most interesting for me was that making the condition branchless more than halved the time of the program and now only 1.35x the time compared part three.
